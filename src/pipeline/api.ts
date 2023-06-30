@@ -190,13 +190,14 @@ export class ApiPileline {
             const requestLog = this.requestLogger.initRequestLog(req, api);
             const end = res.end;
             const requestLogger = this.requestLogger;
-            res.end = function(...args: Array<any>) {
+            const middlewareFunction : any=  function(...args: Array<any>) {
                 requestLog.status = res.statusCode;
                 requestLog.responseTime = new Date().getTime() - requestLog.timestamp;
                 requestLogger.registerOccurrence(requestLog);
                 res.end = end;
                 res.end.apply(res, arguments);
             };
+            res.end =middlewareFunction ;
             next();
         });
     }

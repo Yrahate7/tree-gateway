@@ -157,7 +157,7 @@ export class Configuration extends EventEmitter {
                     // tslint:disable-next-line:no-console
                     console.info('reseting database');
                     const Database = require('./database').Database;
-                    const database = Container.get(Database);
+                    const database:any = Container.get(Database);
                     database.redisClient.flushdb()
                         .then(() => this.getConfigFromDB())
                         .then(resolve)
@@ -248,7 +248,7 @@ export class Configuration extends EventEmitter {
                 type: 'list'
             },
             {
-                default: 'localhost',
+                default: '192.168.0.11',
                 message: 'Redis host:',
                 name: 'host',
                 type: 'input'

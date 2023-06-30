@@ -76,7 +76,7 @@ export class Database {
                 scaleReads: 'all'
             });
         } else if (config.sentinel) {
-            const params = _.defaults(config.options, {
+            const params :any = _.defaults(config.options, {
                 name: config.sentinel.name,
                 sentinels: config.sentinel.nodes
             });

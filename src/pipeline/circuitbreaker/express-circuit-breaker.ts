@@ -109,7 +109,7 @@ export class CircuitBreaker extends EventEmitter {
         }, this.options.timeout);
         const end = res.end;
         const self = this;
-        res.end = function (...args: Array<any>) {
+        const apiInvoker :any = function (...args: Array<any>) {
             if (!operationTimeout) {
                 clearTimeout(timeoutID);
                 if (res.statusCode >= 500) {
@@ -122,6 +122,7 @@ export class CircuitBreaker extends EventEmitter {
             res.end = end;
             res.end.apply(res, arguments);
         };
+        res.end = apiInvoker ;
 
         return next();
     }

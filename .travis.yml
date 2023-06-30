@@ -2,7 +2,7 @@ sudo: required
 language: node_js
 env:
   global:
-  - REDIS_PORT_6379_TCP_ADDR=localhost
+  - REDIS_PORT_6379_TCP_ADDR=192.168.0.11
   - REDIS_PORT_6379_TCP_PORT=6379
 node_js:
 - '8'
